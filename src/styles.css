@@ -58,6 +58,14 @@ li:first-letter {
   font-weight: 400;
 }
 
+.units a {
+  text-decoration: none;
+  cursor: default;
+}
+
+.units a.active {
+  cursor: default;
+}
 .weather-temperature .units {
   position: relative;
   font-size: 16px;
@@ -66,9 +74,9 @@ li:first-letter {
 
 .weather-temperature .active {
   color: rgb(33, 33, 33);
-  cursor: default;
 }
 
 .weather-temperature .active:hover {
-  text-decoration: none;
+  color: rgb(0, 81, 174);
+  cursor: default;
 }
