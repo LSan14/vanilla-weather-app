@@ -111,7 +111,7 @@ function handleSubmit(event) {
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-function displayFahrenheit(event) {
+function displayFahrenheitTemperature(event) {
   event.preventDefult();
   let temperatureElement = document.querySelector("#current-temp");
   celsiusLink.classList.remove("active");
@@ -120,9 +120,9 @@ function displayFahrenheit(event) {
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
 let fahrenheitLink = document.querySelector("#fahrenheit");
-fahrenheitLink.addEventListener("click", displayFahrenheit);
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
-function displayCelsius(event) {
+function displayCelsiusTemperature(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#current-temp");
   celsiusLink.classList.add("active");
@@ -131,6 +131,6 @@ function displayCelsius(event) {
 }
 
 let celsiusLink = document.querySelector("#celsius");
-celsiusLink.addEventListener("click", displayCelsius);
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("Los Angeles");
