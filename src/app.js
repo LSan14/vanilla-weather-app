@@ -46,7 +46,7 @@ function displayForecast(response) {
           src="http://openweathermap.org/img/wn/${
             forecastDay.weather[0].icon
           }@2x.png"
-          alt=""
+          alt="63557c3b856339c603d5ab6d7046f330"
           width="42"
         />
         <div class="weather-forecast-temperatures">
@@ -67,7 +67,7 @@ function displayForecast(response) {
 }
 
 function getForecast(coordinates) {
-  let apiKey = "3557c3b856339c603d5ab6d7046f330";
+  let apiKey = "63557c3b856339c603d5ab6d7046f330";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
@@ -80,9 +80,8 @@ function displayTemperature(response) {
   let windElement = document.querySelector("#wind");
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
-
+  let celsiusTemperature = null;
   celsiusTemperature = response.data.main.temp;
-
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].description;
@@ -94,13 +93,14 @@ function displayTemperature(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 function search(city) {
   let apiKey = "63557c3b856339c603d5ab6d7046f330";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayTemperature);
-  getForecast(response.data.coord);
 }
 
 function handleSubmit(event) {
@@ -108,6 +108,8 @@ function handleSubmit(event) {
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
 }
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
 
 function displayFahrenheit(event) {
   event.preventDefult();
@@ -117,22 +119,16 @@ function displayFahrenheit(event) {
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", displayFahrenheit);
+
 function displayCelsius(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#current-temp");
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
-
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
-
-let celsiusTemperature = null;
-
-let form = document.querySelector("#search-form");
-form.addEventListener("submit", handleSubmit);
-
-let fahrenheitLink = document.querySelector("#fahrenheit");
-fahrenheitLink.addEventListener("click", displayFahrenheit);
 
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", displayCelsius);
