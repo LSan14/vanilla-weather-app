@@ -1,6 +1,6 @@
 body {
   font-family: arial, sans-serif;
-  background-color: grey;
+  background: white;
 }
 
 h1 {
@@ -34,7 +34,7 @@ li:first-letter {
 .weather-app-wrapper {
   max-width: 600px;
   margin: 30px auto;
-  background-color: rgb(211, 217, 219);
+  background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
 }
 
 .weather-app {
